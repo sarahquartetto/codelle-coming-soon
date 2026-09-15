@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="codelle — site web en construction" />
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <title>codelle</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --sky-pad: 32px;
+        --pixel: 3px;
+      }
+
+      html,
+      body {
+        height: 100%;
+        background-color: #8b5cf6;
+      }
+
+      body {
+        font-family: "Press Start 2P", system-ui, sans-serif;
+        color: #44403c;
+      }
+
+      .sky {
+        position: relative;
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: var(--sky-pad);
+        overflow: hidden;
+        background-color: #8b5cf6;
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            transparent 0 var(--pixel),
+            #7c3aed var(--pixel) calc(var(--pixel) * 2)
+          ),
+          repeating-linear-gradient(
+            90deg,
+            transparent 0 var(--pixel),
+            rgba(124, 58, 237, 0.35) var(--pixel) calc(var(--pixel) * 2)
+          );
+      }
+
+      .sky-stars,
+      .pixel-moon,
+      .shooting-star,
+      .star {
+        image-rendering: pixelated;
+      }
+
+      .sky-stars,
+      .pixel-moon,
+      .shooting-star {
+        position: absolute;
+        pointer-events: none;
+      }
+
+      .sky-stars {
+        inset: 0;
+      }
+
+      .star {
+        position: absolute;
+        background: #f8fafc;
+        box-shadow: none;
+      }
+
+      .star.is-gold {
+        background: #fde68a;
+      }
+
+      .star.is-lilac {
+        background: #ddd6fe;
+      }
+
+      .star.is-plus {
+        box-shadow:
+          var(--pixel) 0 0 0 currentColor,
+          calc(var(--pixel) * -1) 0 0 0 currentColor,
+          0 var(--pixel) 0 0 currentColor,
+          0 calc(var(--pixel) * -1) 0 0 currentColor;
+        color: #f8fafc;
+        background: #f8fafc;
+      }
+
+      .star.twinkle {
+        animation: twinkle 1.4s steps(2, end) infinite;
+      }
+
+      .star.twinkle-slow {
+        animation: twinkle 2.2s steps(2, end) infinite;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.15;
+        }
+      }
+
+      {/*}.pixel-moon {
+        top: calc(var(--sky-pad) * 0.18);
+        right: calc(var(--sky-pad) * 0.22);
+        width: var(--pixel);
+        height: var(--pixel);
+        background: transparent;
+        box-shadow:
+          calc(var(--pixel) * 3) 0 0 0 #fde68a,
+          calc(var(--pixel) * 4) 0 0 0 #fde68a,
+          calc(var(--pixel) * 2) var(--pixel) 0 0 #fde68a,
+          calc(var(--pixel) * 3) var(--pixel) 0 0 #fff7c2,
+          calc(var(--pixel) * 4) var(--pixel) 0 0 #fde68a,
+          calc(var(--pixel) * 5) var(--pixel) 0 0 #fbbf24,
+          var(--pixel) calc(var(--pixel) * 2) 0 0 #fde68a,
+          calc(var(--pixel) * 2) calc(var(--pixel) * 2) 0 0 #fff7c2,
+          calc(var(--pixel) * 3) calc(var(--pixel) * 2) 0 0 #fde68a,
+          calc(var(--pixel) * 4) calc(var(--pixel) * 2) 0 0 #fbbf24,
+          calc(var(--pixel) * 5) calc(var(--pixel) * 2) 0 0 #f59e0b,
+          var(--pixel) calc(var(--pixel) * 3) 0 0 #fde68a,
+          calc(var(--pixel) * 2) calc(var(--pixel) * 3) 0 0 #fde68a,
+          calc(var(--pixel) * 3) calc(var(--pixel) * 3) 0 0 #fbbf24,
+          calc(var(--pixel) * 4) calc(var(--pixel) * 3) 0 0 #f59e0b,
+          calc(var(--pixel) * 2) calc(var(--pixel) * 4) 0 0 #fde68a,
+          calc(var(--pixel) * 3) calc(var(--pixel) * 4) 0 0 #fbbf24,
+          calc(var(--pixel) * 4) calc(var(--pixel) * 4) 0 0 #f59e0b,
+          calc(var(--pixel) * 3) calc(var(--pixel) * 5) 0 0 #fbbf24;
+      }*/}
+
+      .shooting-star {
+        top: 0;
+        left: 0;
+        width: var(--pixel);
+        height: var(--pixel);
+        background: #fff;
+        box-shadow:
+          calc(var(--pixel) * -1) var(--pixel) 0 0 #ede9fe,
+          calc(var(--pixel) * -2) calc(var(--pixel) * 2) 0 0 rgba(221, 214, 254, 0.7),
+          calc(var(--pixel) * -3) calc(var(--pixel) * 3) 0 0 rgba(221, 214, 254, 0.35);
+        animation: shoot 7s steps(14, end) infinite;
+      }
+
+      @keyframes shoot {
+        0%,
+        12% {
+          transform: translate(8vw, 6px);
+          opacity: 0;
+        }
+        16% {
+          opacity: 1;
+        }
+        38% {
+          transform: translate(42vw, calc(var(--sky-pad) * 0.55));
+          opacity: 0;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .frame {
+        position: relative;
+        z-index: 1;
+        min-height: calc(100vh - var(--sky-pad) * 2);
+        min-height: calc(100dvh - var(--sky-pad) * 2);
+        display: flex;
+        flex-direction: column;
+        background-color: #f9fafb;
+      }
+
+      .content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5rem 1rem;
+      }
+
+      .stack {
+        width: 100%;
+        max-width: 48rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      h1 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .logo {
+        width: 100%;
+        max-width: 24rem;
+        height: auto;
+        object-fit: contain;
+        image-rendering: auto;
+      }
+
+      .copy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+      }
+
+      .status {
+        font-size: 0.7rem;
+        line-height: 1.8;
+        color: #44403c;
+        text-wrap: balance;
+      }
+
+      .contact {
+        font-size: 0.5rem;
+        line-height: 1.9;
+        color: #44403c;
+        text-wrap: balance;
+        max-width: 22rem;
+      }
+
+      .contact a {
+        color: #8b5cf6;
+        text-decoration: none;
+      }
+
+      .contact a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      .dots span {
+        display: inline-block;
+        opacity: 0;
+        animation-duration: 1.8s;
+        animation-timing-function: steps(1, end);
+        animation-iteration-count: infinite;
+      }
+
+      .dots span:nth-child(1) {
+        animation-name: dot-1;
+      }
+
+      .dots span:nth-child(2) {
+        animation-name: dot-2;
+      }
+
+      .dots span:nth-child(3) {
+        animation-name: dot-3;
+      }
+
+      @keyframes dot-1 {
+        0%,
+        12% {
+          opacity: 0;
+        }
+        13%,
+        80% {
+          opacity: 1;
+        }
+        81%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes dot-2 {
+        0%,
+        32% {
+          opacity: 0;
+        }
+        33%,
+        80% {
+          opacity: 1;
+        }
+        81%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes dot-3 {
+        0%,
+        52% {
+          opacity: 0;
+        }
+        53%,
+        80% {
+          opacity: 1;
+        }
+        81%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @media (min-width: 640px) {
+        :root {
+          --sky-pad: 100px;
+          --pixel: 4px;
+        }
+
+        .content {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+
+        .logo {
+          max-width: 28rem;
+        }
+
+        .status {
+          font-size: 0.875rem;
+        }
+
+        .contact {
+          font-size: 0.625rem;
+          max-width: none;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .logo {
+          max-width: 32rem;
+        }
+
+        .status {
+          font-size: 1.05rem;
+        }
+
+        .contact {
+          font-size: 0.75rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .dots span {
+          animation: none;
+          opacity: 1;
+        }
+
+        .star.twinkle,
+        .star.twinkle-slow,
+        .shooting-star {
+          animation: none;
+        }
+
+        .shooting-star {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sky">
+      <div class="sky-stars" aria-hidden="true"></div>
+      <div class="pixel-moon" aria-hidden="true"></div>
+      <div class="shooting-star" aria-hidden="true"></div>
+      <main class="frame">
+        <div class="content">
+          <div class="stack">
+            <h1>
+              <img
+                class="logo"
+                src="./logo-codelle-2.png"
+                alt="codelle"
+                width="2172"
+                height="724"
+                decoding="async"
+              />
+            </h1>
+            <div class="copy">
+              <p class="status">
+                Site web en construction<span class="dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
+              </p>
+              <p class="contact">
+                contact pour développement web :
+                <a href="mailto:sarah@codelle.ch">sarah@codelle.ch</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script>
+      (function () {
+        var layer = document.querySelector(".sky-stars");
+        if (!layer) return;
+
+        function snap(value, pixel) {
+          return Math.round(value / pixel) * pixel;
+        }
+
+        function paint() {
+          var pad = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--sky-pad"));
+          var pixel = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pixel"));
+          var width = layer.clientWidth;
+          var height = layer.clientHeight;
+          var count = width > 640 ? 120 : 70;
+          var html = "";
+          var i;
+
+          for (i = 0; i < count; i++) {
+            var edge = i % 4;
+            var x;
+            var y;
+            if (edge === 0) {
+              x = Math.random() * width;
+              y = Math.random() * pad;
+            } else if (edge === 1) {
+              x = width - Math.random() * pad;
+              y = Math.random() * height;
+            } else if (edge === 2) {
+              x = Math.random() * width;
+              y = height - Math.random() * pad;
+            } else {
+              x = Math.random() * pad;
+              y = Math.random() * height;
+            }
+
+            var size = Math.random() < 0.18 ? pixel * 2 : pixel;
+            var kind = Math.random();
+            var extra = "";
+            if (kind < 0.12) extra += " is-plus";
+            else if (kind < 0.22) extra += " is-gold";
+            else if (kind < 0.32) extra += " is-lilac";
+            if (Math.random() < 0.4) extra += Math.random() < 0.5 ? " twinkle" : " twinkle-slow";
+
+            html +=
+              '<span class="star' +
+              extra +
+              '" style="left:' +
+              snap(x, pixel) +
+              "px;top:" +
+              snap(y, pixel) +
+              "px;width:" +
+              size +
+              "px;height:" +
+              size +
+              "px;animation-delay:" +
+              (Math.random() * 2).toFixed(2) +
+              's"></span>';
+          }
+
+          layer.innerHTML = html;
+        }
+
+        paint();
+        window.addEventListener("resize", paint);
+      })();
+    </script>
+  </body>
+</html>
