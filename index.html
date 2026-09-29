@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="codelle — site web en construction" />
-    <link rel="icon" type="image/png" href="./codelle-logo-degrade.png?v=3" />
+    <link rel="icon" type="image/png" href="./codelle-logo-cafe.png?v=4" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" rel="stylesheet" />
@@ -27,12 +27,12 @@
       html,
       body {
         height: 100%;
-        background-color: #161310;
+        background-color: #131211;
       }
 
       body {
         font-family: Outfit, system-ui, sans-serif;
-        color: #e4d4bf;
+        color: #dcd3c8;
       }
 
       {/* PIXEL ART BORDURE
@@ -212,21 +212,21 @@
         pointer-events: none;
         background: conic-gradient(
           from var(--frame-angle),
-          #c45c3e 0deg,
-          #d9c2b3 27deg,
-          #e6d3b0 37deg,
-          #c45c3e 57deg,
-          #c45c3e 100deg,
-          #2c2018 125deg,
-          #c45c3e 152deg,
-          #c45c3e 180deg,
-          #d9c2b3 207deg,
-          #e6d3b0 217deg,
-          #c45c3e 237deg,
-          #c45c3e 280deg,
-          #2c2018 305deg,
-          #c45c3e 332deg,
-          #c45c3e 360deg
+          #b85c4c 0deg,
+          #c9b2aa 27deg,
+          #dcd3c8 37deg,
+          #b85c4c 57deg,
+          #b85c4c 100deg,
+          #221e1c 125deg,
+          #b85c4c 152deg,
+          #b85c4c 180deg,
+          #c9b2aa 207deg,
+          #dcd3c8 217deg,
+          #b85c4c 237deg,
+          #b85c4c 280deg,
+          #221e1c 305deg,
+          #b85c4c 332deg,
+          #b85c4c 360deg
         );
         animation: frame-shift 12s linear infinite;
         mask:
@@ -274,7 +274,7 @@
         display: block;
         width: 100%;
         max-width: 24rem;
-        background-color: #e4d4bf;
+        background-color: #dcd3c8;
         -webkit-mask-image: url("./logo-codelle-2.png");
         mask-image: url("./logo-codelle-2.png");
         -webkit-mask-size: contain;
@@ -306,7 +306,7 @@
         font-weight: 500;
         line-height: 1.45;
         letter-spacing: 0.01em;
-        color: #e4d4bf;
+        color: #dcd3c8;
       }
 
       .status-break {
@@ -318,7 +318,7 @@
         font-weight: 400;
         line-height: 1.5;
         letter-spacing: 0.01em;
-        color: #e4d4bf;
+        color: #dcd3c8;
         text-wrap: balance;
         max-width: 22rem;
       }
@@ -327,32 +327,22 @@
         color: transparent;
         background-image: linear-gradient(
           90deg,
-          #c07048,
-          #c9956a,
-          #d4b07a,
-          #c07048,
-          #c9956a,
-          #c07048
+          #b85c4c 0%,
+          #d49488 35%,
+          #e8c5bc 50%,
+          #d49488 65%,
+          #b85c4c 100%
         );
-        background-size: 250% 100%;
-        background-position: 0% 50%;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-decoration: none;
-        animation: email-shift 12s linear infinite;
       }
 
       .contact a:hover {
         text-decoration: underline;
-        text-decoration-color: #c45c3e;
+        text-decoration-color: #b85c4c;
         text-underline-offset: 3px;
-      }
-
-      @keyframes email-shift {
-        to {
-          background-position: 100% 50%;
-        }
       }
 
       .dots span {
@@ -474,14 +464,7 @@
 
         .frame::before {
           animation: none;
-          background: #c45c3e;
-        }
-
-        .contact a {
-          animation: none;
-          background: none;
-          color: #c45c3e;
-          -webkit-text-fill-color: #c45c3e;
+          background: #b85c4c;
         }
       }
     </style>
