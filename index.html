@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="codelle — site web en construction" />
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="icon" type="image/png" href="./codelle-logo-degrade.png?v=3" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap" rel="stylesheet" />
     <title>codelle</title>
     <style>
       *,
@@ -18,20 +18,27 @@
         padding: 0;
       }
 
-      :root {
-        --sky-pad: 32px;
-        --pixel: 3px;
+      @property --frame-angle {
+        syntax: "<angle>";
+        inherits: false;
+        initial-value: 0deg;
       }
 
       html,
       body {
         height: 100%;
-        background-color: #8b5cf6;
+        background-color: #19120d;
       }
 
       body {
-        font-family: "Press Start 2P", system-ui, sans-serif;
-        color: #44403c;
+        font-family: Outfit, system-ui, sans-serif;
+        color: #eedbac;
+      }
+
+      {/* PIXEL ART BORDURE
+      :root {
+        --sky-pad: 32px;
+        --pixel: 3px;
       }
 
       .sky {
@@ -114,7 +121,7 @@
         }
       }
 
-      {/*}.pixel-moon {
+      .pixel-moon {
         top: calc(var(--sky-pad) * 0.18);
         right: calc(var(--sky-pad) * 0.22);
         width: var(--pixel);
@@ -140,7 +147,7 @@
           calc(var(--pixel) * 3) calc(var(--pixel) * 4) 0 0 #fbbf24,
           calc(var(--pixel) * 4) calc(var(--pixel) * 4) 0 0 #f59e0b,
           calc(var(--pixel) * 3) calc(var(--pixel) * 5) 0 0 #fbbf24;
-      }*/}
+      }
 
       .shooting-star {
         top: 0;
@@ -173,14 +180,69 @@
         }
       }
 
-      .frame {
-        position: relative;
-        z-index: 1;
-        min-height: calc(100vh - var(--sky-pad) * 2);
-        min-height: calc(100dvh - var(--sky-pad) * 2);
+      @media (min-width: 640px) {
+        :root {
+          --sky-pad: 80px;
+          --pixel: 4px;
+        }
+      }
+      */}
+
+      .sky {
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 1.25rem;
         display: flex;
         flex-direction: column;
-        background-color: #f9fafb;
+      }
+
+      .frame {
+        position: relative;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+      }
+
+      .frame::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 4px;
+        pointer-events: none;
+        background: conic-gradient(
+          from var(--frame-angle),
+          #c45c3e 0deg,
+          #f4c4a8 27deg,
+          #ffea8e 37deg,
+          #c45c3e 57deg,
+          #c45c3e 100deg,
+          #4a1812 125deg,
+          #c45c3e 152deg,
+          #c45c3e 180deg,
+          #f4c4a8 207deg,
+          #ffea8e 217deg,
+          #c45c3e 237deg,
+          #c45c3e 280deg,
+          #4a1812 305deg,
+          #c45c3e 332deg,
+          #c45c3e 360deg
+        );
+        animation: frame-shift 12s linear infinite;
+        mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+      }
+
+      @keyframes frame-shift {
+        to {
+          --frame-angle: 360deg;
+        }
       }
 
       .content {
@@ -208,12 +270,28 @@
         justify-content: center;
       }
 
-      .logo {
+      .logo-wrap {
+        display: block;
         width: 100%;
         max-width: 24rem;
+        background-color: #eedbac;
+        -webkit-mask-image: url("./logo-codelle-2.png");
+        mask-image: url("./logo-codelle-2.png");
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+      }
+
+      .logo {
+        display: block;
+        width: 100%;
         height: auto;
         object-fit: contain;
         image-rendering: auto;
+        opacity: 0;
       }
 
       .copy {
@@ -224,9 +302,11 @@
       }
 
       .status {
-        font-size: 0.8rem;
-        line-height: 1.8;
-        color: #44403c;
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 1.45;
+        letter-spacing: 0.01em;
+        color: #eedbac;
       }
 
       .status-break {
@@ -234,21 +314,45 @@
       }
 
       .contact {
-        font-size: 0.58rem;
-        line-height: 1.9;
-        color: #44403c;
+        font-size: 0.9375rem;
+        font-weight: 400;
+        line-height: 1.5;
+        letter-spacing: 0.01em;
+        color: #eedbac;
         text-wrap: balance;
         max-width: 22rem;
       }
 
       .contact a {
-        color: #8b5cf6;
+        color: transparent;
+        background-image: linear-gradient(
+          90deg,
+          #c77b41,
+          #ecaa55,
+          #fbc74e,
+          #c77b41,
+          #ecaa55,
+          #c77b41
+        );
+        background-size: 250% 100%;
+        background-position: 0% 50%;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         text-decoration: none;
+        animation: email-shift 12s linear infinite;
       }
 
       .contact a:hover {
         text-decoration: underline;
+        text-decoration-color: #c45c3e;
         text-underline-offset: 3px;
+      }
+
+      @keyframes email-shift {
+        to {
+          background-position: 100% 50%;
+        }
       }
 
       .dots span {
@@ -317,9 +421,12 @@
       }
 
       @media (min-width: 640px) {
-        :root {
-          --sky-pad: 80px;
-          --pixel: 4px;
+        .sky {
+          padding: 2.5rem;
+        }
+
+        .frame::before {
+          padding: 6px;
         }
 
         .content {
@@ -327,12 +434,12 @@
           padding-right: 1.5rem;
         }
 
-        .logo {
+        .logo-wrap {
           max-width: 28rem;
         }
 
         .status {
-          font-size: 0.875rem;
+          font-size: 1.25rem;
         }
 
         .status-break {
@@ -340,22 +447,22 @@
         }
 
         .contact {
-          font-size: 0.625rem;
+          font-size: 1rem;
           max-width: none;
         }
       }
 
       @media (min-width: 1024px) {
-        .logo {
+        .logo-wrap {
           max-width: 32rem;
         }
 
         .status {
-          font-size: 1.05rem;
+          font-size: 1.375rem;
         }
 
         .contact {
-          font-size: 0.75rem;
+          font-size: 1.0625rem;
         }
       }
 
@@ -365,35 +472,41 @@
           opacity: 1;
         }
 
-        .star.twinkle,
-        .star.twinkle-slow,
-        .shooting-star {
+        .frame::before {
           animation: none;
+          background: #c45c3e;
         }
 
-        .shooting-star {
-          display: none;
+        .contact a {
+          animation: none;
+          background: none;
+          color: #c45c3e;
+          -webkit-text-fill-color: #c45c3e;
         }
       }
     </style>
   </head>
   <body>
+    <!-- {/* PIXEL ART BORDURE
+    <div class="sky-stars" aria-hidden="true"></div>
+    <div class="pixel-moon" aria-hidden="true"></div>
+    <div class="shooting-star" aria-hidden="true"></div>
+    */} -->
     <div class="sky">
-      <div class="sky-stars" aria-hidden="true"></div>
-      <div class="pixel-moon" aria-hidden="true"></div>
-      <div class="shooting-star" aria-hidden="true"></div>
       <main class="frame">
         <div class="content">
           <div class="stack">
             <h1>
-              <img
-                class="logo"
-                src="./logo-codelle-2.png"
-                alt="codelle"
-                width="2172"
-                height="724"
-                decoding="async"
-              />
+              <span class="logo-wrap">
+                <img
+                  class="logo"
+                  src="./logo-codelle-2.png"
+                  alt="codelle"
+                  width="2172"
+                  height="724"
+                  decoding="async"
+                />
+              </span>
             </h1>
             <div class="copy">
               <p class="status">
@@ -408,6 +521,7 @@
         </div>
       </main>
     </div>
+    <!-- {/* PIXEL ART BORDURE
     <script>
       (function () {
         var layer = document.querySelector(".sky-stars");
@@ -422,7 +536,7 @@
           var pixel = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--pixel"));
           var width = layer.clientWidth;
           var height = layer.clientHeight;
-          var count = width > 640 ? 56 : 32; // avant : 120 / 70, puis 80 / 48
+          var count = width > 640 ? 56 : 32;
           var html = "";
           var i;
 
@@ -475,5 +589,6 @@
         window.addEventListener("resize", paint);
       })();
     </script>
+    */} -->
   </body>
 </html>
