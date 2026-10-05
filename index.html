@@ -27,12 +27,33 @@
       html,
       body {
         height: 100%;
-        background-color: #131211;
+        min-height: 100dvh;
+        background-color: #f58c76;
+        background-image:
+          radial-gradient(
+            ellipse 70% 62% at 50% 50%,
+            transparent 0%,
+            transparent 28%,
+            rgba(250, 248, 243, 0.45) 55%,
+            rgba(250, 248, 243, 0.78) 78%,
+            #faf8f3 100%
+          ),
+          linear-gradient(
+            90deg,
+            #f9d94a 0%,
+            #f7c462 22%,
+            #f58c76 50%,
+            #b89648 78%,
+            #657620 100%
+          );
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
       }
 
       body {
         font-family: Outfit, system-ui, sans-serif;
-        color: #dcd3c8;
+        color: #fff;
       }
 
       {/* PIXEL ART BORDURE
@@ -189,21 +210,79 @@
       */}
 
       .sky {
+        position: relative;
         min-height: 100vh;
         min-height: 100dvh;
         padding: 1.25rem;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
       }
+
+      /* SPIRALE BACKGROUND — conservée pour y revenir
+      .vortex {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        overflow: hidden;
+        -webkit-mask-image: radial-gradient(
+          circle at center,
+          transparent 0%,
+          transparent 24%,
+          rgba(0, 0, 0, 0.15) 36%,
+          rgba(0, 0, 0, 0.5) 50%,
+          rgba(0, 0, 0, 0.78) 64%,
+          rgba(0, 0, 0, 0.45) 78%,
+          transparent 100%
+        );
+        mask-image: radial-gradient(
+          circle at center,
+          transparent 0%,
+          transparent 24%,
+          rgba(0, 0, 0, 0.15) 36%,
+          rgba(0, 0, 0, 0.5) 50%,
+          rgba(0, 0, 0, 0.78) 64%,
+          rgba(0, 0, 0, 0.45) 78%,
+          transparent 100%
+        );
+      }
+
+      .vortex-shape {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: min(130vmax, 175%);
+        height: min(130vmax, 175%);
+        transform: translate(-50%, -50%);
+        background: radial-gradient(
+          circle at center,
+          rgba(101, 118, 32, 0.06) 0%,
+          rgba(239, 189, 33, 0.2) 42%,
+          rgba(245, 140, 118, 0.28) 72%,
+          rgba(101, 118, 32, 0.32) 100%
+        );
+        -webkit-mask-image: url("./mini-logo-codelle-transparent.png");
+        mask-image: url("./mini-logo-codelle-transparent.png");
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+      }
+      */
 
       .frame {
         position: relative;
+        z-index: 1;
         flex: 1;
         display: flex;
         flex-direction: column;
         min-height: 0;
       }
 
+      /* BORDURE ANIMEE — conservée pour y revenir
       .frame::before {
         content: "";
         position: absolute;
@@ -212,21 +291,26 @@
         pointer-events: none;
         background: conic-gradient(
           from var(--frame-angle),
-          #689b58 0deg,
-          #8fb582 27deg,
-          #c5d9be 37deg,
-          #689b58 57deg,
-          #689b58 100deg,
-          #221e1c 125deg,
-          #b85c4c 152deg,
-          #b85c4c 180deg,
-          #d49488 207deg,
-          #e8c5bc 217deg,
-          #b85c4c 237deg,
-          #b85c4c 280deg,
-          #221e1c 305deg,
-          #689b58 332deg,
-          #689b58 360deg
+          #657620 0deg,
+          #849b3a 16deg,
+          #657620 36deg,
+          #657620 70deg,
+          #9aaa3a 82deg,
+          #efbd21 90deg,
+          #f5d15a 108deg,
+          #efbd21 130deg,
+          #efbd21 160deg,
+          #f0b090 172deg,
+          #f58c76 180deg,
+          #f8a998 198deg,
+          #f58c76 220deg,
+          #f58c76 250deg,
+          #d4a050 262deg,
+          #849b3a 270deg,
+          #657620 288deg,
+          #657620 320deg,
+          #849b3a 340deg,
+          #657620 360deg
         );
         animation: frame-shift 12s linear infinite;
         mask:
@@ -244,6 +328,7 @@
           --frame-angle: 360deg;
         }
       }
+      */
 
       .content {
         flex: 1;
@@ -274,9 +359,9 @@
         display: block;
         width: 100%;
         max-width: 24rem;
-        background-color: #dcd3c8;
-        -webkit-mask-image: url("./logo-codelle-2.png");
-        mask-image: url("./logo-codelle-2.png");
+        background-color: #fff;
+        -webkit-mask-image: url("./codelle-logo-degrade-corail.png");
+        mask-image: url("./codelle-logo-degrade-corail.png");
         -webkit-mask-size: contain;
         mask-size: contain;
         -webkit-mask-repeat: no-repeat;
@@ -306,7 +391,7 @@
         font-weight: 500;
         line-height: 1.45;
         letter-spacing: 0.01em;
-        color: #dcd3c8;
+        color: #fff;
       }
 
       .status-break {
@@ -318,28 +403,19 @@
         font-weight: 400;
         line-height: 1.5;
         letter-spacing: 0.01em;
-        color: #dcd3c8;
+        color: #fff;
         text-wrap: balance;
         max-width: 22rem;
       }
 
       .contact a {
-        color: transparent;
-        background-image: linear-gradient(
-          90deg,
-          #689b58 0%,
-          #8fb582 35%,
-          #b85c4c 100%
-        );
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #fff;
         text-decoration: none;
       }
 
       .contact a:hover {
         text-decoration: underline;
-        text-decoration-color: #b85c4c;
+        text-decoration-color: #fff;
         text-underline-offset: 3px;
       }
 
@@ -413,9 +489,9 @@
           padding: 2.5rem;
         }
 
-        .frame::before {
+        /* .frame::before {
           padding: 6px;
-        }
+        } */
 
         .content {
           padding-left: 1.5rem;
@@ -460,10 +536,10 @@
           opacity: 1;
         }
 
-        .frame::before {
+        /* .frame::before {
           animation: none;
-          background: #689b58;
-        }
+          background: #657620;
+        } */
       }
     </style>
   </head>
@@ -474,6 +550,11 @@
     <div class="shooting-star" aria-hidden="true"></div>
     */} -->
     <div class="sky">
+      <!-- SPIRALE BACKGROUND
+      <div class="vortex" aria-hidden="true">
+        <div class="vortex-shape"></div>
+      </div>
+      -->
       <main class="frame">
         <div class="content">
           <div class="stack">
@@ -481,7 +562,7 @@
               <span class="logo-wrap">
                 <img
                   class="logo"
-                  src="./logo-codelle-2.png"
+                  src="./codelle-logo-degrade-corail.png"
                   alt="codelle"
                   width="2172"
                   height="724"
