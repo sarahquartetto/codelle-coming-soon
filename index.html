@@ -27,33 +27,12 @@
       html,
       body {
         height: 100%;
-        min-height: 100dvh;
-        background-color: #f58c76;
-        background-image:
-          radial-gradient(
-            ellipse 70% 62% at 50% 50%,
-            transparent 0%,
-            transparent 28%,
-            rgba(250, 248, 243, 0.45) 55%,
-            rgba(250, 248, 243, 0.78) 78%,
-            #faf8f3 100%
-          ),
-          linear-gradient(
-            90deg,
-            #f9d94a 0%,
-            #f7c462 22%,
-            #f58c76 50%,
-            #b89648 78%,
-            #657620 100%
-          );
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
+        background-color: #f5f1ea;
       }
 
       body {
         font-family: Outfit, system-ui, sans-serif;
-        color: #fff;
+        color: #2c2a26;
       }
 
       {/* PIXEL ART BORDURE
@@ -219,9 +198,34 @@
         overflow: hidden;
       }
 
-      /* SPIRALE BACKGROUND — conservée pour y revenir
-      .vortex {
+      .sky::before {
+        content: "";
         position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(to right, rgba(245, 140, 118, 0.28) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(245, 140, 118, 0.28) 1px, transparent 1px);
+        background-size: 1.75cm 1.75cm;
+        -webkit-mask-image: radial-gradient(
+          ellipse 72% 58% at 50% 50%,
+          rgba(0, 0, 0, 0.08) 0%,
+          rgba(0, 0, 0, 0.14) 38%,
+          rgba(0, 0, 0, 0.55) 70%,
+          #000 100%
+        );
+        mask-image: radial-gradient(
+          ellipse 72% 58% at 50% 50%,
+          rgba(0, 0, 0, 0.08) 0%,
+          rgba(0, 0, 0, 0.14) 38%,
+          rgba(0, 0, 0, 0.55) 70%,
+          #000 100%
+        );
+      }
+
+      .vortex {
+        display: none;
         inset: 0;
         z-index: 0;
         pointer-events: none;
@@ -271,7 +275,6 @@
         -webkit-mask-position: center;
         mask-position: center;
       }
-      */
 
       .frame {
         position: relative;
@@ -359,7 +362,7 @@
         display: block;
         width: 100%;
         max-width: 24rem;
-        background-color: #fff;
+        background: linear-gradient(90deg, #f9d94a 0%, #f58c76 50%, #657620 100%);
         -webkit-mask-image: url("./codelle-logo-degrade-corail.png");
         mask-image: url("./codelle-logo-degrade-corail.png");
         -webkit-mask-size: contain;
@@ -391,7 +394,7 @@
         font-weight: 500;
         line-height: 1.45;
         letter-spacing: 0.01em;
-        color: #fff;
+        color: #2c2a26;
       }
 
       .status-break {
@@ -403,19 +406,27 @@
         font-weight: 400;
         line-height: 1.5;
         letter-spacing: 0.01em;
-        color: #fff;
+        color: #2c2a26;
         text-wrap: balance;
         max-width: 22rem;
       }
 
       .contact a {
-        color: #fff;
+        color: transparent;
+        background-image: linear-gradient(
+          90deg,
+          #f58c76 0%,
+          #657620 100%
+        );
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         text-decoration: none;
       }
 
       .contact a:hover {
         text-decoration: underline;
-        text-decoration-color: #fff;
+        text-decoration-color: #657620;
         text-underline-offset: 3px;
       }
 
@@ -550,11 +561,9 @@
     <div class="shooting-star" aria-hidden="true"></div>
     */} -->
     <div class="sky">
-      <!-- SPIRALE BACKGROUND
       <div class="vortex" aria-hidden="true">
         <div class="vortex-shape"></div>
       </div>
-      -->
       <main class="frame">
         <div class="content">
           <div class="stack">
